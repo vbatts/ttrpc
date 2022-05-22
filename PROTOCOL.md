@@ -57,7 +57,7 @@ initiated streams. Server initiated streams are not currently supported.
 | 0x02         | Response | Final stream data and terminates |
 | 0x03         | Data     | Stream data                      |
 
-### Request
+### Request Type
 
 The request message is used to initiate stream and send along request data for
 properly routing and handling the stream. The stream may indicate unary without
@@ -76,7 +76,7 @@ a request with empty flags indicates a unary request.
 | 0x01 | `remote closed` | Non-unary, but no more data expected from remote |
 | 0x02 | `remote open`   | Non-unary, remote is still sending data          |
 
-### Response
+### Response Type
 
 The response message is used to end a stream with data, an empty response, or
 an error. A response message is the only expected message after a unary request.
@@ -86,9 +86,9 @@ other stream data may follow.
 
 #### Response Flags
 
-No response flags are defined at this time, flags should be empty.
+No response flags are defined at this time. Response flags should be empty.
 
-### Data
+### Stream Data Type
 
 The data message is used to send data on an already initialized stream. Either
 client or server may send data. A data message is not allowed on a unary stream.
@@ -103,10 +103,11 @@ interpreted as an empty object. For example, transmitting the number zero as a
 protobuf message ends up with a data length of zero, but the message is still
 considered data and should be processed.
 
-#### Data Flags
+#### Stream Data Flags
 
 | Flag | Name            | Description                       |
 |------|-----------------|-----------------------------------|
+| 0x00 | XXX TODO        | normal connection? more data to come? |
 | 0x01 | `remote closed` | No more data expected from remote |
 | 0x04 | `no data`       | This message does not have data   |
 
